@@ -1,5 +1,6 @@
 package com.example.cpusviewer
 
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +30,18 @@ class CPUAdaptor(private val cpus:List<CPUsItem>): RecyclerView.Adapter<CPUAdapt
             tvName.text=cpus[position].name
             val url = cpus[position].image
             Picasso.get().load(url).into(ivCpu)
+        }
+        // set on click listener for the item
+        holder.itemView.setOnClickListener {
+            // navigate to the item activity
+            // pass the id of the item to the item activity
+            val id = cpus[position].id
+            val intent =  Intent(holder.itemView.context, ItemActivity::class.java)
+            intent.putExtra("id", id)
+            intent.putExtra("name", cpus[position].name)
+            intent.putExtra("description", cpus[position].description)
+            intent.putExtra("image", cpus[position].image)
+            holder.itemView.context.startActivity(intent)
         }
     }
 }
