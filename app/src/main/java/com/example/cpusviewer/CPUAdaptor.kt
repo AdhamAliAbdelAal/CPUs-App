@@ -27,7 +27,7 @@ class CPUAdaptor(private val cpus:List<CPUsItem>): RecyclerView.Adapter<CPUAdapt
         holder.itemView.apply {
             tvDescription.text=cpus[position].description
             tvName.text=cpus[position].name
-            val url = "https://t4.ftcdn.net/jpg/01/36/83/05/240_F_136830578_Uk1mQk9MGSHbOZpjiTnz7JxAOHKCwVKH.jpg"
+            val url = cpus[position].image
             Picasso.get().load(url).into(ivCpu)
         }
     }
