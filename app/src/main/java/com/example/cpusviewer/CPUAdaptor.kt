@@ -1,7 +1,6 @@
 package com.example.cpusviewer
 
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.cpu_item.view.ivCpu
 import kotlinx.android.synthetic.main.cpu_item.view.tvDescription
-import kotlinx.android.synthetic.main.cpu_item.view.tvName
-import java.net.URL
+import kotlinx.android.synthetic.main.cpu_item.view.tvItemName
 
 class CPUAdaptor(private val cpus:List<CPUsItem>): RecyclerView.Adapter<CPUAdaptor.CPUViewHolder>(){
     inner class CPUViewHolder(view: View) : RecyclerView.ViewHolder(view)
@@ -27,7 +25,7 @@ class CPUAdaptor(private val cpus:List<CPUsItem>): RecyclerView.Adapter<CPUAdapt
     override fun onBindViewHolder(holder: CPUViewHolder, position: Int) {
         holder.itemView.apply {
             tvDescription.text=cpus[position].description
-            tvName.text=cpus[position].name
+            tvItemName.text=cpus[position].name
             val url = cpus[position].image
             Picasso.get().load(url).into(ivCpu)
         }
