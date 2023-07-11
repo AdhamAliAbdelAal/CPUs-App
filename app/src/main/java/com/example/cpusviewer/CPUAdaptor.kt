@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.cpu_item.view.ivCpu
 import kotlinx.android.synthetic.main.cpu_item.view.tvDescription
 import kotlinx.android.synthetic.main.cpu_item.view.tvName
@@ -26,9 +27,8 @@ class CPUAdaptor(private val cpus:List<CPUsItem>): RecyclerView.Adapter<CPUAdapt
         holder.itemView.apply {
             tvDescription.text=cpus[position].description
             tvName.text=cpus[position].name
-//            val url = URL(cpus[position].image)
-//            val bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-//            ivCpu.setImageBitmap(bmp)
+            val url = "https://t4.ftcdn.net/jpg/01/36/83/05/240_F_136830578_Uk1mQk9MGSHbOZpjiTnz7JxAOHKCwVKH.jpg"
+            Picasso.get().load(url).into(ivCpu)
         }
     }
 }
