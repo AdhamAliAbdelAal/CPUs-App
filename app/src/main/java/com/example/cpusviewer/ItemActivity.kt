@@ -6,10 +6,9 @@ import android.os.Bundle
 import android.view.Menu
 import androidx.core.net.toUri
 import com.example.cpusviewer.databinding.ActivityItemBinding
-import com.example.cpusviewer.databinding.ActivityMainBinding
+
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_item.btnOpenApp
-import kotlinx.android.synthetic.main.cpu_item.view.ivCpu
+
 
 class ItemActivity : AppCompatActivity() {
     lateinit var binding: ActivityItemBinding // binding variable
@@ -28,14 +27,6 @@ class ItemActivity : AppCompatActivity() {
         binding.tvItemDescription.text = description
         binding.tvItemId.text = id.toString()
         Picasso.get().load(image).into(binding.itemImage)
-        val btnOpenApp=binding.btnOpenApp
-        btnOpenApp.setOnClickListener {
-            // open youtube app
-            // the first parameter is the action
-            // action view means that we want to view something
-            val intent = Intent(Intent.ACTION_VIEW, "https://www.youtube.com".toUri())
-            startActivity(intent)
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -45,18 +36,22 @@ class ItemActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: android.view.MenuItem): Boolean {
         if(item.itemId == R.id.btnShare){
-            val intent = Intent().apply {
-                action = Intent.ACTION_SEND
-                type = "text/plain"
-                putExtra(Intent.EXTRA_TEXT, "How are you?")
-            }
-            startActivity(intent)
-            return true
+            return sendMessage()
+        }
+        else if(item.itemId==R.id.btnYoutube)
+        {
+            return openYoutube()
         }
         return super.onOptionsItemSelected(item)
     }
 
-    fun sendEmail(): Boolean {
+    fun openYoutube (): Boolean {
+        val intent = Intent(Intent.ACTION_VIEW, "https://www.youtube.com".toUri())
+        startActivity(intent)
+        return true
+    }
+
+    fun sendMessage(): Boolean {
         val intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plain"
         intent.putExtra(Intent.EXTRA_EMAIL, "adhamali20012015@gmail.com")
