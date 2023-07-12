@@ -1,10 +1,14 @@
 package com.example.cpusviewer
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import androidx.core.net.toUri
 import com.example.cpusviewer.databinding.ActivityItemBinding
 import com.example.cpusviewer.databinding.ActivityMainBinding
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_item.btnOpenApp
 import kotlinx.android.synthetic.main.cpu_item.view.ivCpu
 
 class ItemActivity : AppCompatActivity() {
@@ -24,5 +28,18 @@ class ItemActivity : AppCompatActivity() {
         binding.tvItemDescription.text = description
         binding.tvItemId.text = id.toString()
         Picasso.get().load(image).into(binding.itemImage)
+        val btnOpenApp=binding.btnOpenApp
+        btnOpenApp.setOnClickListener {
+            // open youtube app
+            // the first parameter is the action
+            // action view means that we want to view something
+            val intent = Intent(Intent.ACTION_VIEW, "https://www.youtube.com".toUri())
+            startActivity(intent)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_cpu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 }

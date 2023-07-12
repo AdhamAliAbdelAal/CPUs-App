@@ -49,5 +49,12 @@
             android:layout_weight="1"
             android:text="TextView"
             android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnOpenApp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Button" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
