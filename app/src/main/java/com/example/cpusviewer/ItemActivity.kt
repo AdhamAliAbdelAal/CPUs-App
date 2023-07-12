@@ -42,4 +42,27 @@ class ItemActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_cpu, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
+    override fun onOptionsItemSelected(item: android.view.MenuItem): Boolean {
+        if(item.itemId == R.id.btnShare){
+            val intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                type = "text/plain"
+                putExtra(Intent.EXTRA_TEXT, "How are you?")
+            }
+            startActivity(intent)
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    fun sendEmail(): Boolean {
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "text/plain"
+        intent.putExtra(Intent.EXTRA_EMAIL, "adhamali20012015@gmail.com")
+        intent.putExtra(Intent.EXTRA_TEXT, "How are you?")
+        startActivity(intent)
+        return true
+    }
+
 }
